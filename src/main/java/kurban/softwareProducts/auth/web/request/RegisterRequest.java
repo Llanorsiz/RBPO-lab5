@@ -10,4 +10,5 @@ import lombok.extern.jackson.Jacksonized;
 public class RegisterRequest {
     private String username;
     private String password;
+    private String deviceId;
 }

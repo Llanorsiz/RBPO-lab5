@@ -1,5 +1,6 @@
 package kurban.softwareProducts.user.service;
 
+import kurban.softwareProducts.auth.web.request.RegisterRequest;
 import kurban.softwareProducts.common.exception.base.ForbiddenException;
 import kurban.softwareProducts.developmentTask.repository.DevelopmentTaskRepository;
 import kurban.softwareProducts.softwareProduct.repository.SoftwareProductRepository;
@@ -47,7 +48,7 @@ public class UserService {
     @Transactional
     public UserResponse updateUser(Long userId, UpdateUserRequest request) {
 
-        if(!isAdmin() && !getCurrentUserId().equals(userId)){
+        if (!isAdmin() && !getCurrentUserId().equals(userId)) {
             throw new ForbiddenException("Вы можете менять только свой профиль");
         }
 

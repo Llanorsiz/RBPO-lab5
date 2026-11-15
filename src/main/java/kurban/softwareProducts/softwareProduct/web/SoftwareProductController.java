@@ -23,7 +23,7 @@ public class SoftwareProductController {
     }
 
     @PatchMapping("/{productId}/responsible/{newResponsibleUserId}")
-    public SoftwareProductResponse changeResponsibleUser(@PathVariable Long productId, @PathVariable Long newResponsibleUserId){
+    public SoftwareProductResponse changeResponsibleUser(@PathVariable Long productId, @PathVariable Long   newResponsibleUserId){
         return softwareProductService.changeResponsibleUser(productId, newResponsibleUserId);
     }
 
