@@ -36,6 +36,12 @@ public class DevelopmentTaskService {
                 .toList();
     }
 
+    public DevelopmentTaskResponse getDevelopmentTask(Long developmentTaskId){
+        return developmentTaskRepository.findById(developmentTaskId)
+                .map(developmentTaskMapper::toDevelopmentTaskResponse)
+                .orElseThrow(DevelopmentTaskNotFoundException::new);
+    }
+
     @Transactional
     public DevelopmentTaskResponse completeTask(Long taskId){
         DevelopmentTask developmentTask = developmentTaskRepository.findById(taskId)
@@ -82,7 +88,8 @@ public class DevelopmentTaskService {
 
     @Transactional
     public DevelopmentTaskResponse updateDevelopmentTask(Long developmentTaskId, UpdateDevelopmentTaskRequest request) {
-        DevelopmentTask developmentTask = developmentTaskRepository.findById(developmentTaskId).get();
+        DevelopmentTask developmentTask = developmentTaskRepository.findById(developmentTaskId)
+                .orElseThrow(DevelopmentTaskNotFoundException::new);
 
         if(!isAdmin() && !getCurrentUserId().equals(developmentTask.getAssigneeUserId())){
             throw new ForbiddenException("Вы можете изменять только свои задачи");

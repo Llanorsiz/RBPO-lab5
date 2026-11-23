@@ -38,6 +38,12 @@ public class UserService {
                 .toList();
     }
 
+    public UserResponse getUser(Long userId){
+        return userRepository.findById(userId)
+                .map(userMapper::toUserResponse)
+                .orElseThrow(UserNotFoundException::new);
+    }
+
     @Transactional
     public UserResponse createUser(CreateUserRequest request) {
         User user = userMapper.fromCreateUserRequest(request);

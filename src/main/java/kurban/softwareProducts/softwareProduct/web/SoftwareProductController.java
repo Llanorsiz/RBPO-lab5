@@ -22,6 +22,11 @@ public class SoftwareProductController {
         return softwareProductService.getSoftwareProducts();
     }
 
+    @GetMapping("/{softwareProductId}")
+    public SoftwareProductResponse getSoftwareProduct(@PathVariable Long softwareProductId){
+        return softwareProductService.getSoftwareProducts(softwareProductId);
+    }
+
     @PatchMapping("/{productId}/responsible/{newResponsibleUserId}")
     public SoftwareProductResponse changeResponsibleUser(@PathVariable Long productId, @PathVariable Long   newResponsibleUserId){
         return softwareProductService.changeResponsibleUser(productId, newResponsibleUserId);

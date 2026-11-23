@@ -1,0 +1,492 @@
+openapi: 3.0.0
+info:
+  title: lab5
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{base_url}}'
+paths:
+  /development-tasks:
+    get:
+      summary: All
+      responses: {}
+      tags:
+        - development-tasks
+      security:
+        - BearerAuth: []
+    post:
+      summary: Create
+      responses: {}
+      tags:
+        - development-tasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                assigneeUserId:
+                  type: integer
+                releaseId:
+                  type: integer
+                progress:
+                  type: string
+            example:
+              productId: 5
+              assigneeUserId: 1
+              releaseId: 2
+              progress: TO_DO
+  /development-tasks/1/assign/6:
+    patch:
+      summary: AssignTask
+      responses: {}
+      tags:
+        - development-tasks
+        - '1'
+        - assign
+        - '6'
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                assigneeUserId:
+                  type: integer
+                releaseId:
+                  type: integer
+                progress:
+                  type: string
+            example:
+              productId: 1
+              assigneeUserId: 1
+              releaseId: 2
+              progress: TO_DO
+  /development-tasks/1/complete:
+    patch:
+      summary: CompleteTask
+      responses: {}
+      tags:
+        - development-tasks
+        - '1'
+        - complete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                assigneeUserId:
+                  type: integer
+                releaseId:
+                  type: integer
+                progress:
+                  type: string
+            example:
+              productId: 1
+              assigneeUserId: 1
+              releaseId: 2
+              progress: TO_DO
+  /development-tasks/1:
+    put:
+      summary: Update
+      responses: {}
+      tags:
+        - development-tasks
+        - '1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                assigneeUserId:
+                  type: integer
+                releaseId:
+                  type: integer
+                progress:
+                  type: string
+            example:
+              productId: 1
+              assigneeUserId: 1
+              releaseId: 2
+              progress: DONE
+    delete:
+      summary: Delete
+      responses: {}
+      tags:
+        - development-tasks
+        - '1'
+  /development-tasks/4:
+    get:
+      summary: Id
+      responses: {}
+      tags:
+        - development-tasks
+        - '1'
+      security:
+        - BearerAuth: []
+  /releases:
+    get:
+      summary: All
+      responses: {}
+      tags:
+        - releases
+      security:
+        - BearerAuth: []
+    post:
+      summary: Create
+      responses: {}
+      tags:
+        - releases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                productId:
+                  type: integer
+                status:
+                  type: string
+            example:
+              number: '1.0'
+              productId: 1
+              status: ACTUAL
+  /releases/1:
+    put:
+      summary: Update
+      responses: {}
+      tags:
+        - releases
+        - '1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+                productId:
+                  type: integer
+                status:
+                  type: string
+            example:
+              number: '2.0'
+              productId: 1
+              status: DEPRECATED
+    delete:
+      summary: Delete
+      responses: {}
+      tags:
+        - releases
+        - '1'
+  /releases/2:
+    get:
+      summary: Id
+      responses: {}
+      tags:
+        - releases
+        - '1'
+  /release-checks:
+    get:
+      summary: All
+      responses: {}
+      tags:
+        - release-checks
+      security:
+        - BearerAuth: []
+    post:
+      summary: Create
+      responses: {}
+      tags:
+        - release-checks
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                releaseId:
+                  type: integer
+                name:
+                  type: string
+                type:
+                  type: string
+                result:
+                  type: string
+            example:
+              releaseId: 3
+              name: testsi
+              type: REQUIRED
+              result: Okay
+  /release-checks/1:
+    put:
+      summary: Update
+      responses: {}
+      tags:
+        - release-checks
+        - '1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                releaseId:
+                  type: integer
+                name:
+                  type: string
+                type:
+                  type: string
+                result:
+                  type: string
+            example:
+              releaseId: 2
+              name: work
+              type: REQUIRED
+              result: Zavoz
+    delete:
+      summary: Delete
+      responses: {}
+      tags:
+        - release-checks
+        - '1'
+    get:
+      summary: Id
+      responses: {}
+      tags:
+        - release-checks
+        - '1'
+  /software-products:
+    get:
+      summary: All
+      responses: {}
+      tags:
+        - software-products
+      security:
+        - BearerAuth: []
+    post:
+      summary: Create
+      responses: {}
+      tags:
+        - software-products
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                responsibleUserId:
+                  type: integer
+            example:
+              name: Gonki
+              responsibleUserId: 6
+  /software-products/1/responsible/6:
+    patch:
+      summary: ChangeResponsibleUser
+      responses: {}
+      tags:
+        - software-products
+        - '1'
+        - responsible
+        - '6'
+      security:
+        - BearerAuth: []
+  /software-products/1:
+    put:
+      summary: Update
+      responses: {}
+      tags:
+        - software-products
+        - '1'
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                responsibleUserId:
+                  type: integer
+                currentReleaseId:
+                  type: integer
+            example:
+              name: MTUCI LMS 2.0
+              responsibleUserId: 1
+              currentReleaseId: 2
+    delete:
+      summary: Delete
+      responses: {}
+      tags:
+        - software-products
+        - '1'
+      security:
+        - BearerAuth: []
+    get:
+      summary: Id
+      responses: {}
+      tags:
+        - software-products
+        - '1'
+  /users:
+    post:
+      summary: Create
+      responses: {}
+      tags:
+        - users
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+            example:
+              username: Kurban123559999
+    get:
+      summary: All
+      responses: {}
+      tags:
+        - users
+      security:
+        - BearerAuth: []
+  /users/6:
+    put:
+      summary: Update
+      parameters:
+        - name: X-XSRF-TOKEN
+          in: header
+          required: false
+          schema:
+            type: string
+          example: miyT6HPKKOdQMH_kehINDHtapHLcDhX2MMcXtYPnkcoqwURWqx2h20CuGYN9BU7RST85ORpjiUu6bCTbCKVzhrPeoPtP9CFm
+      responses: {}
+      tags:
+        - users
+        - '6'
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+            example:
+              username: Priplili
+    get:
+      summary: Id
+      responses: {}
+      tags:
+        - users
+        - '6'
+  /users/15:
+    delete:
+      summary: Delete
+      parameters:
+        - name: X-XSRF-TOKEN
+          in: header
+          required: false
+          schema:
+            type: string
+          example: Ue6bFtARaTQoMBd9Yr7YmaF57tE4AmevIAQrHDQVlANhiGDdZ4r_IbMpCwQFBnIYBJPsqMccw-gNYF-CRTIfeVEm9mBW61W5
+      responses: {}
+      tags:
+        - users
+        - '15'
+      security:
+        - BearerAuth: []
+  /auth/csrf:
+    get:
+      summary: Csrf
+      responses: {}
+      tags:
+        - auth
+        - csrf
+  /auth/register:
+    post:
+      summary: Register
+      parameters:
+        - name: X-XSRF-TOKEN
+          in: header
+          required: false
+          schema:
+            type: string
+          example: Ue6bFtARaTQoMBd9Yr7YmaF57tE4AmevIAQrHDQVlANhiGDdZ4r_IbMpCwQFBnIYBJPsqMccw-gNYF-CRTIfeVEm9mBW61W5
+      responses: {}
+      tags:
+        - auth
+        - register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+            example:
+              username: Kurban1233
+              password: 123456qwerty
+  /auth/login:
+    post:
+      summary: Login
+      parameters:
+        - name: X-XSRF-TOKEN
+          in: header
+          required: false
+          schema:
+            type: string
+          example: miyT6HPKKOdQMH_kehINDHtapHLcDhX2MMcXtYPnkcoqwURWqx2h20CuGYN9BU7RST85ORpjiUu6bCTbCKVzhrPeoPtP9CFm
+      responses: {}
+      tags:
+        - auth
+        - login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+            example:
+              username: Kurban1
+              password: 123456qwerty
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

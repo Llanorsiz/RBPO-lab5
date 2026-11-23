@@ -22,6 +22,11 @@ public class DevelopmentTaskController {
         return developmentTaskService.getDevelopmentTasks();
     }
 
+    @GetMapping("/{developmentTaskId}")
+    public DevelopmentTaskResponse getDevelopmentTask(@PathVariable Long developmentTaskId){
+        return developmentTaskService.getDevelopmentTask(developmentTaskId);
+    }
+
     @PatchMapping("/{taskId}/complete")
     public DevelopmentTaskResponse completeTask(@PathVariable Long taskId){
         return developmentTaskService.completeTask(taskId);

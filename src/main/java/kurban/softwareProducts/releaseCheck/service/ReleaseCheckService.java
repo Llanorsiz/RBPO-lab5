@@ -35,6 +35,12 @@ public class ReleaseCheckService {
                 .toList();
     }
 
+    public ReleaseCheckResponse getReleaseCheck(Long releaseCheckId){
+        return releaseCheckRepository.findById(releaseCheckId)
+                .map(releaseCheckMapper::toReleaseCheckResponse)
+                .orElseThrow(ReleaseCheckNotFoundException::new);
+    }
+
     @Transactional
     public ReleaseCheckResponse createReleaseCheck(Long releaseId, CreateReleaseCheckRequest request) {
         Release release = releaseRepository.findById(releaseId)

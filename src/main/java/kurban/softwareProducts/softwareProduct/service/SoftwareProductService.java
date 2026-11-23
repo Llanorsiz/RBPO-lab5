@@ -39,6 +39,12 @@ public class SoftwareProductService {
                 .toList();
     }
 
+    public SoftwareProductResponse getSoftwareProducts(Long softwareProductId){
+        return softwareProductRepository.findById(softwareProductId)
+                .map(softwareProductMapper::toSoftwareProductResponse)
+                .orElseThrow(SoftwareProductNotFoundException::new);
+    }
+
     @Transactional
     public SoftwareProductResponse changeResponsibleUser(Long productId, Long newResponsibleUserId){
         SoftwareProduct softwareProduct = softwareProductRepository.findById(productId)

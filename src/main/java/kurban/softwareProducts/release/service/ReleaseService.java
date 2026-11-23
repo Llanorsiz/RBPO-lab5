@@ -37,6 +37,12 @@ public class ReleaseService {
                 .toList();
     }
 
+    public ReleaseResponse getRelease(Long releaseId){
+        return releaseRepository.findById(releaseId)
+                .map(releaseMapper::toReleaseResponse)
+                .orElseThrow(ReleaseNotFoundException::new);
+    }
+
     @Transactional
     public ReleaseResponse createRelease(CreateReleaseRequest request) {
         Release release = releaseMapper.fromCreateReleaseRequest(request);

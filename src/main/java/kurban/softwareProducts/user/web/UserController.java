@@ -22,6 +22,11 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/{userId}")
+    public UserResponse getUser(@PathVariable Long userId){
+        return userService.getUser(userId);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
